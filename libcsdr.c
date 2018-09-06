@@ -1103,18 +1103,16 @@ int deemphasis_nfm_ff (float* input, float* output, int input_size, int sample_r
     /*
         Warning! This only works on predefined samplerates, as it uses fixed FIR coefficients defined in predefined.h
         However, there are the octave commands to generate the taps for your custom (fixed) sample rate.
-        What it does:
-            - reject below 400 Hz
-            - passband between 400 HZ - 4 kHz, but with 20 dB/decade rolloff (for deemphasis)
-            - reject everything above 4 kHz
+	The filter characteristics are defined in the `precompiled.h` file.
     */
     float* taps;
     int taps_length=0;
 
     DNFMFF_ADD_ARRAY(48000)
     DNFMFF_ADD_ARRAY(44100)
-    DNFMFF_ADD_ARRAY(8000)
+    DNFMFF_ADD_ARRAY(22050)
     DNFMFF_ADD_ARRAY(11025)
+    DNFMFF_ADD_ARRAY(8000)
 
     if(!taps_length) return 0; //sample rate n
     int i;
